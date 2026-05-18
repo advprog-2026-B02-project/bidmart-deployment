@@ -43,7 +43,7 @@ services:
       - INTERNAL_SERVICE_TOKEN=${INTERNAL_SERVICE_TOKEN}
       - APP_BASE_URL=http://auth-service:8081
       - APP_FRONTEND_URL=http://frontend:3000
-      - NOTIFICATION_SERVICE_URL=http://notification-service:8085
+      - NOTIFICATION_SERVICE_URL=http://notification-service:8086
     networks:
       - bidmart-network
 
@@ -62,8 +62,8 @@ services:
       - USER_SERVICE_URL=http://auth-service:8081
       - CATALOG_SERVICE_URL=http://catalog-service:8083
       - WALLET_SERVICE_URL=http://wallet-service:8084
-      - NOTIFICATION_SERVICE_URL=http://notification-service:8085
-      - ORDER_SERVICE_URL=http://order-service:8086
+      - NOTIFICATION_SERVICE_URL=http://notification-service:8086
+      - ORDER_SERVICE_URL=http://order-service:8085
     depends_on:
       kafka:
         condition: service_healthy
@@ -102,7 +102,7 @@ services:
       - APP_BASE_URL=http://wallet-service:8084
       - APP_FRONTEND_URL=http://frontend:3000
       - USER_SERVICE_URL=http://auth-service:8081
-      - NOTIFICATION_SERVICE_URL=http://notification-service:8085
+      - NOTIFICATION_SERVICE_URL=http://notification-service:8086
     depends_on:
       kafka:
         condition: service_healthy
@@ -119,7 +119,7 @@ services:
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
       - INTERNAL_SERVICE_TOKEN=${INTERNAL_SERVICE_TOKEN}
-      - APP_BASE_URL=http://notification-service:8085
+      - APP_BASE_URL=http://notification-service:8086
       - APP_FRONTEND_URL=http://frontend:3000
       - USER_SERVICE_URL=http://auth-service:8081
     depends_on:
@@ -137,12 +137,12 @@ services:
       - DATABASE_USERNAME=${DATABASE_USERNAME}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD}
       - INTERNAL_SERVICE_TOKEN=${INTERNAL_SERVICE_TOKEN}
-      - APP_BASE_URL=http://order-service:8086
+      - APP_BASE_URL=http://order-service:8085
       - APP_FRONTEND_URL=http://frontend:3000
       - USER_SERVICE_URL=http://auth-service:8081
       - CATALOG_SERVICE_URL=http://catalog-service:8083
       - WALLET_SERVICE_URL=http://wallet-service:8084
-      - NOTIFICATION_SERVICE_URL=http://notification-service:8085
+      - NOTIFICATION_SERVICE_URL=http://notification-service:8086
     networks:
       - bidmart-network
 
@@ -158,8 +158,8 @@ services:
       - BIDDING_SERVICE_URL=http://bidding-service:8082
       - CATALOG_SERVICE_URL=http://catalog-service:8083
       - WALLET_SERVICE_URL=http://wallet-service:8084
-      - NOTIFICATION_SERVICE_URL=http://notification-service:8085
-      - ORDER_SERVICE_URL=http://order-service:8086
+      - NOTIFICATION_SERVICE_URL=http://notification-service:8086
+      - ORDER_SERVICE_URL=http://order-service:8085
     depends_on:
       - auth-service
       - bidding-service
