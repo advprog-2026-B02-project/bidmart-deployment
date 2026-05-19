@@ -107,6 +107,7 @@ services:
     container_name: bidmart-wallet-service
     environment:
       - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - DATABASE_URL=${WALLET_DATABASE_URL}
       - DATABASE_USERNAME=${WALLET_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${WALLET_DATABASE_PASSWORD}
@@ -127,6 +128,7 @@ services:
     container_name: bidmart-notification-service
     environment:
       - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - DATABASE_URL=${NOTIF_DATABASE_URL}
       - DATABASE_USERNAME=${NOTIF_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${NOTIF_DATABASE_PASSWORD}
@@ -146,6 +148,7 @@ services:
     container_name: bidmart-order-service
     environment:
       - SPRING_PROFILES_ACTIVE=prod
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - DATABASE_URL=${ORDER_DATABASE_URL}
       - DATABASE_USERNAME=${ORDER_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${ORDER_DATABASE_PASSWORD}
