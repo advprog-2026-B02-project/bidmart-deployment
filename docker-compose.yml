@@ -75,9 +75,10 @@ services:
     container_name: bidmart-catalog-service
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - DATABASE_URL=${DATABASE_URL}
-      - DATABASE_USERNAME=${DATABASE_USERNAME}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - SERVER_PORT=8083
+      - CATALOG_DB_URL=${CATALOG_DB_URL}
+      - CATALOG_DB_USERNAME=${CATALOG_DB_USERNAME}
+      - CATALOG_DB_PASSWORD=${CATALOG_DB_PASSWORD}
       - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
       - INTERNAL_SERVICE_TOKEN=${INTERNAL_SERVICE_TOKEN}
       - APP_BASE_URL=http://catalog-service:8083
@@ -90,19 +91,18 @@ services:
       - bidmart-network
 
   wallet-service:
-    image: ${DOCKERHUB_USERNAME}/bidmart-wallet-service:latest
-    container_name: bidmart-wallet-service
+    image: mugmold/bidmart-wallet-service:latest
+    container_name: bidmart-wallet-app
+    ports:
+      - "8084:8084"
     environment:
-      - SPRING_PROFILES_ACTIVE=prod
-      - DATABASE_URL=${DATABASE_URL}
-      - DATABASE_USERNAME=${DATABASE_USERNAME}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
-      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - SERVER_PORT=8084
+      - WALLET_DB_URL=${WALLET_DB_URL}
+      - WALLET_DB_USERNAME=${WALLET_DB_USERNAME}
+      - WALLET_DB_PASSWORD=${WALLET_DB_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
       - INTERNAL_SERVICE_TOKEN=${INTERNAL_SERVICE_TOKEN}
-      - APP_BASE_URL=http://wallet-service:8084
-      - APP_FRONTEND_URL=http://frontend:3000
-      - USER_SERVICE_URL=http://auth-service:8081
-      - NOTIFICATION_SERVICE_URL=http://notification-service:8086
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:29092
     depends_on:
       kafka:
         condition: service_healthy
