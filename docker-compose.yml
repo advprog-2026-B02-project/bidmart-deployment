@@ -109,6 +109,8 @@ services:
     ports:
       - "8084:8084"
     environment:
+      - JWT_SECRET=${JWT_SECRET}
+      - INTERNAL_SERVICE_TOKEN=${INTERNAL_SERVICE_TOKEN}
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - DATABASE_URL=${WALLET_DATABASE_URL}
