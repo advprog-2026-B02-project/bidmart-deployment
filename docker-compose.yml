@@ -104,10 +104,8 @@ services:
       - bidmart-network
 
   wallet-service:
-    image: mugmold/bidmart-wallet-service:latest
+    image: ${DOCKERHUB_USERNAME}/bidmart-wallet-service:latest
     container_name: bidmart-wallet-app
-    ports:
-      - "8084:8084"
     environment:
       - JWT_SECRET=${JWT_SECRET}
       - INTERNAL_SERVICE_TOKEN=${INTERNAL_SERVICE_TOKEN}
@@ -137,6 +135,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - JWT_SECRET=${JWT_SECRET}
       - DATABASE_URL=${NOTIF_DATABASE_URL}
       - DATABASE_USERNAME=${NOTIF_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${NOTIF_DATABASE_PASSWORD}
@@ -162,6 +161,7 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_FLYWAY_ENABLED=false
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - JWT_SECRET=${JWT_SECRET}
       - DATABASE_URL=${ORDER_DATABASE_URL}
       - DATABASE_USERNAME=${ORDER_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${ORDER_DATABASE_PASSWORD}

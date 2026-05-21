@@ -109,6 +109,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - JWT_SECRET=${JWT_SECRET}
       - DATABASE_URL=${WALLET_DATABASE_URL}
       - DATABASE_USERNAME=${WALLET_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${WALLET_DATABASE_PASSWORD}
@@ -133,6 +134,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=prod
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - JWT_SECRET=${JWT_SECRET}
       - DATABASE_URL=${NOTIF_DATABASE_URL}
       - DATABASE_USERNAME=${NOTIF_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${NOTIF_DATABASE_PASSWORD}
@@ -158,6 +160,7 @@ services:
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
       - SPRING_FLYWAY_ENABLED=false
       - SPRING_KAFKA_BOOTSTRAP_SERVERS=kafka:29092
+      - JWT_SECRET=${JWT_SECRET}
       - DATABASE_URL=${ORDER_DATABASE_URL}
       - DATABASE_USERNAME=${ORDER_DATABASE_USERNAME}
       - DATABASE_PASSWORD=${ORDER_DATABASE_PASSWORD}
@@ -200,14 +203,19 @@ services:
       - bidmart-network
 
   nginx:
+    image: nginx:latest
+    container_name: bidmart-nginx
     ports:
       - "80:80"
       - "443:443"
-
     volumes:
       - ./nginx.prod.conf:/etc/nginx/conf.d/default.conf:ro
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
+    depends_on:
+      - frontend
+    networks:
+      - bidmart-network
 
   certbot:
     image: certbot/certbot
