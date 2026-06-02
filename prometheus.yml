@@ -1,0 +1,33 @@
+global:
+  scrape_interval: 10s
+
+scrape_configs:
+  - job_name: 'bidmart-auth'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['auth-service:8081']
+
+  - job_name: 'bidmart-bidding'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['bidding-service:8082']
+
+  - job_name: 'bidmart-catalog'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['catalog-service:8083']
+
+  - job_name: 'bidmart-wallet'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['wallet-service:8084']
+
+  - job_name: 'bidmart-order'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['order-service:8085']
+
+  - job_name: 'bidmart-notification'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: ['notification-service:8086']
