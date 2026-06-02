@@ -193,6 +193,12 @@ services:
       - WALLET_SERVICE_URL=http://wallet-service:8084
       - ORDER_SERVICE_URL=http://order-service:8085
       - NOTIFICATION_SERVICE_URL=http://notification-service:8086
+      - FEATURE_ADMIN_ENABLED=${FEATURE_ADMIN_ENABLED:-true}
+      - FEATURE_BIDDING_ENABLED=${FEATURE_BIDDING_ENABLED:-true}
+      - FEATURE_NOTIFICATIONS_ENABLED=${FEATURE_NOTIFICATIONS_ENABLED:-true}
+      - FEATURE_ORDERS_ENABLED=${FEATURE_ORDERS_ENABLED:-true}
+      - FEATURE_SELLER_ENABLED=${FEATURE_SELLER_ENABLED:-true}
+      - FEATURE_WALLET_ENABLED=${FEATURE_WALLET_ENABLED:-true}
     depends_on:
       - auth-service
       - bidding-service
